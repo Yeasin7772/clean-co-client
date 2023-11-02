@@ -10,9 +10,11 @@ import { Toaster } from 'react-hot-toast';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProviders>
-      <RouterProvider router={Routes} />
-    </AuthProviders>
-    <Toaster/>
+  
+      <AuthProviders>
+        <RouterProvider router={Routes} />
+      </AuthProviders>
+      <Toaster />
+   
   </React.StrictMode>,
 )

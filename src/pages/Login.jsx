@@ -19,6 +19,7 @@ const Login = () => {
         try {
             await login(email,password)
             toast.success('Logged in...', { id: testify });
+            navigate('/')
         } catch (error) {
             console.log(error);
             toast.error(error.message, { id: testify })
