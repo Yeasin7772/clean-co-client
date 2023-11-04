@@ -2,29 +2,33 @@ import { useState } from "react";
 import useAuth from "../hooks/useAuth";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import useAxios from "../hooks/useAxios";
 
 const Login = () => {
     const { login } = useAuth()
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-
     const navigate = useNavigate()
-    console.log(navigate);
+    const axios = useAxios()
+
+    // console.log(navigate);
 
 
-    const handelLogin = async(e) => {
+    const handelLogin = async (e) => {
         e.preventDefault()
         const testify = toast.loading('Logging in..');
 
         try {
-            await login(email,password)
+            const user = await login(email, password)
+            console.log(user.user.email);
+            axios.post('auth/access-token', { email: user.user.email})
             toast.success('Logged in...', { id: testify });
             navigate('/')
         } catch (error) {
             console.log(error);
             toast.error(error.message, { id: testify })
         }
-        
+
 
     }
     return (
